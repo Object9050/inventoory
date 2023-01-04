@@ -1,4 +1,4 @@
-export function generateFullItemList(items){
+export function generateEditedItem(item){
     let html = `
     <!DOCTYPE html>
     <html lang="en">
@@ -46,11 +46,11 @@ export function generateFullItemList(items){
         <div class="container ">
             <div class="row">
                 <div class="col s12">
-                    <h1 class="left-align" id="main-h1-header">Alle Deine Dinge</h1>
+                    <h1 class="left-align" id="main-h1-header">${item.name}</h1>
                 </div>
             </div>
             <div class="row ">       
-            ${createHTMLTable(items)}         
+            ${editItems(item)}         
                 
             </div>
         </div>
@@ -91,43 +91,17 @@ return html;
 
 };
 
-function createHTMLTable(items){
-    let headerNames = Object.keys(items[0])
-    let htmlHeader=""
-    //Als erstes die Überschriften aus dem Objekt laden
-    for (let i = 0; i < headerNames.length; i++){
-        htmlHeader = htmlHeader + ` <th>${headerNames[i]}</th>`
-    }
-    //Dann spalten mnanuell ergaenzen
-    htmlHeader = htmlHeader + "<th>Edit</th>"
 
-    //Jetzt Zeilenweise die Tabelle aufbauen
-    let htmlRow = ""
-    for (let linenumber = 0; linenumber<items.length; linenumber++){    
 
-        // Je Item wird eine neue Zeile (=> Table-Row: tr) in der Tabelle angelgt   
-        // mit mit J Iterator bewegen wir uns von oben nach unten
-        let currItems = Object.values(items[linenumber])
-        htmlRow = htmlRow + "<tr>"
-        for(let k = 0; k< currItems.length; k++){
-            //Jede Zeile besteht aus mehreren Spalten
-            // mit mit k-Iterator bewegen wir uns von links nach rechts
-            htmlRow = htmlRow + `<td>${currItems[k]}</td>`
-        }
-        //Am Ende einer Zeile den Edit Button manuell ergänzen
-        htmlRow = htmlRow + `<td><a href="/details/${linenumber}">Anzeigen</a></td>`
-        htmlRow = htmlRow + `<td><a href="/edit/${linenumber}">bearbeiten</a></td>`
-        htmlRow = htmlRow + `<td><a href="/delete/${linenumber}">löschen</a></td>`
-
-        // Die Zeile der Tabelle schließen. 
-        htmlRow = htmlRow + "</tr>"
-    }
-
-    let htmlTable = `<table class="striped highlight responsive-table">
-        <thead><tr>${htmlHeader}</tr></thead>
-        <tbody>${htmlRow}</tbody>
-    </table>`    
-
-    //Wir liefern die Fertige Tabelle zurück
-    return htmlTable;
+function editItems (item){
+    let editItem =  `<div>
+                        <form>
+                            <input type="text" value="${item.name}"></input>
+                            <input type="text" value="${item.typ}"></input>
+                            <input type="text" value="${item.Neupreis}"></input>
+                            <input type="text" value="${item.Ort}"></input>
+                            <input type="submit" method="post" value="Speichern"></input>
+                        </form>
+                    </div>`
+return editItem
 }

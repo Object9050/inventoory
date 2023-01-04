@@ -2,6 +2,8 @@ import http from 'http'
 import fs from 'fs'
 import url from 'url'
 import {generateFullItemList as httmldoc} from './views/inventoor-full-list.view.js'
+import {generateSingleView as singleDoc} from './views/inventory-single.view.js'
+import {generateEditedItem as editItem} from './views/inventory-edit.view.js'
 
 const hostname = '127.0.0.1'
 const port = '3000'
@@ -24,7 +26,7 @@ function OnUserRequest(req, res){
     console.log(counter)
 
     let parsedURL = url.parse(req.url, true)
-
+     
     if(req.url === "/"){ //Das ist die Startseite
         //res.setHeader ('Content-Type', 'text/html');
         res.statusCode = 200;
@@ -36,7 +38,7 @@ function OnUserRequest(req, res){
 
     }
     else{ 
-        let splitedURL = req.url.split('/')
+        let splitedURL = parsedURL.pathname.split('/')//req.url.split('/')
         if(splitedURL.includes("delete") && splitedURL.length == 3){
             //delete items[0]
             let item_to_delete = splitedURL[2]
@@ -44,6 +46,26 @@ function OnUserRequest(req, res){
             res.end (httmldoc(items))
 
         }
+        else if (splitedURL.includes("details") && splitedURL.length == 3){
+                //delete items[0]
+                const id_position = 2;
+                let item_to_show = splitedURL[id_position]
+                console.log("details, id: " + item_to_show)
+                //let item = Object.values(items[item_to_show])
+                // items = items[item_to_show].toString()
+                // res.end (`<h1> Hat geklappt</h1> ${item}`)
+                res.end(singleDoc(items[item_to_show]))
+        }
+        else if (splitedURL.includes("edit") && splitedURL.length == 3){
+            //delete items[0]
+            const id_position = 2;
+            let item_to_show = splitedURL[id_position]
+            console.log("details, id: " + item_to_show)
+            let item = Object.values(items[item_to_show])
+            // items = items[item_to_show].toString()
+            // res.end (`<h1> Hat geklappt</h1> ${item}`)
+            res.end(editItem(items[item_to_show]))
+    }
         else{
             // Bei allen andern habe ich einen Fehler => 404
             res.setHeader ('Content-Type', 'text/html');
