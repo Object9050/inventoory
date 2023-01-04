@@ -1,0 +1,32 @@
+[
+    {
+        "name":"Küchentisch",
+        "typ":"Tisch",
+        "neupreis":"200 EUR",
+        "ort":"Küche"
+    },
+    {
+        "name":"Wohnzimmertisch",
+        "typ":"Tisch",
+        "neupreis":"150 EUR",
+        "ort":"Wohnzimmer"
+    },
+    {
+        "name":"Webcam",
+        "typ":"Computerzubehör",
+        "neupreis":"70 EUR",
+        "ort":"Schreibtisch"
+    },
+    {
+        "name":"Drucker",
+        "typ":"Computerzubehör",
+        "neupreis":"70 EUR",
+        "ort":"Regal"
+    },
+    {
+        "name":"Laptop",
+        "typ":"Computer",
+        "neupreis":"1200 EUR",
+        "ort":"k.A => mobil"
+    }
+]

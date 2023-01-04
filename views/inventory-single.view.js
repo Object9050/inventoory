@@ -94,7 +94,7 @@ return html;
 function createSingleView (item){
     let singleItem =    `<div>${item.name}</div> 
                         <div>${item.typ}</div>
-                        <div>${item.Neupreis}</div>
-                        <div>${item.Ort}</div>`
+                        <div>${item.neupreis}</div>
+                        <div>${item.ort}</div>`
 return singleItem
 }

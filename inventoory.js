@@ -18,12 +18,16 @@ let items;
 fs.readFile('./data/items.json', (err, data) => {
     items = JSON.parse(data);
 })
+// Daten in JSON-Datei schreiben
+// let addItem;
+// fs.write('./data/items.json', (err, data))
 
 
 let counter=0;
 function OnUserRequest(req, res){
 
     console.log(counter)
+    console.log(items)
 
     let parsedURL = url.parse(req.url, true)
      
@@ -38,34 +42,66 @@ function OnUserRequest(req, res){
 
     }
     else{ 
-        let splitedURL = parsedURL.pathname.split('/')//req.url.split('/')
-        if(splitedURL.includes("delete") && splitedURL.length == 3){
+        let splittedURL = parsedURL.pathname.split('/') //req.url.split('/')
+        if(splittedURL.includes("delete") && splittedURL.length == 3){
             //delete items[0]
-            let item_to_delete = splitedURL[2]
+            let item_to_delete = splittedURL[2]
             items.splice(item_to_delete,1)
             res.end (httmldoc(items))
 
         }
-        else if (splitedURL.includes("details") && splitedURL.length == 3){
-                //delete items[0]
+        else if (splittedURL.includes("details") && splittedURL.length == 3){
                 const id_position = 2;
-                let item_to_show = splitedURL[id_position]
+                let item_to_show = splittedURL[id_position]
                 console.log("details, id: " + item_to_show)
                 //let item = Object.values(items[item_to_show])
                 // items = items[item_to_show].toString()
                 // res.end (`<h1> Hat geklappt</h1> ${item}`)
                 res.end(singleDoc(items[item_to_show]))
         }
-        else if (splitedURL.includes("edit") && splitedURL.length == 3){
-            //delete items[0]
+        else if (splittedURL.includes("edit") && splittedURL.length == 3){
             const id_position = 2;
-            let item_to_show = splitedURL[id_position]
-            console.log("details, id: " + item_to_show)
-            let item = Object.values(items[item_to_show])
+            let item_to_edit = splittedURL[id_position]
+            console.log("details, id: " + item_to_edit)
+            //let item = Object.values(items[item_to_show])
             // items = items[item_to_show].toString()
             // res.end (`<h1> Hat geklappt</h1> ${item}`)
-            res.end(editItem(items[item_to_show]))
-    }
+            res.end(editItem(items[item_to_edit]))
+        }
+        else if (splittedURL.includes("addItem") /* && splittedURL.length == 3 */){
+            let newData = {
+                "name":"",
+                "typ":"",
+                "neupreis":"",
+                "ort":""
+                };
+            items.push(newData);
+            // Convert into raw data before adding to JSON
+            var newDataRaw = JSON.stringify(items);
+            fs.writeFile('./data/items.json', newDataRaw, (err) => {
+                // Error checking
+                if (err) throw err;
+                console.log("New data added");
+            });
+            res.end(editItem(items[items.length-1]))
+        }
+        else if (splittedURL.includes("addKaktus") /* && splittedURL.length == 3 */){
+            let newData = {
+                "name":"Kaktus",
+                "typ":"Pflanze",
+                "neupreis":"1,50 EUR",
+                "ort":"Fensterbank"
+                };
+            items.push(newData);
+            // Convert into raw data before adding to JSON
+            var newDataRaw = JSON.stringify(items);
+            fs.writeFile('./data/items.json', newDataRaw, (err) => {
+                // Error checking
+                if (err) throw err;
+                console.log("New data added");
+            });
+            res.end (httmldoc(items))
+        }
         else{
             // Bei allen andern habe ich einen Fehler => 404
             res.setHeader ('Content-Type', 'text/html');

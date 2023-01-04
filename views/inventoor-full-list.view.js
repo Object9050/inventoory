@@ -47,6 +47,8 @@ export function generateFullItemList(items){
             <div class="row">
                 <div class="col s12">
                     <h1 class="left-align" id="main-h1-header">Alle Deine Dinge</h1>
+                    <a href="/addKaktus">Kaktus hinzufügen</a></br>
+                    <a href="/addItem">Gegenstand hinzufügen</a>
                 </div>
             </div>
             <div class="row ">       
@@ -98,7 +100,7 @@ function createHTMLTable(items){
     for (let i = 0; i < headerNames.length; i++){
         htmlHeader = htmlHeader + ` <th>${headerNames[i]}</th>`
     }
-    //Dann spalten mnanuell ergaenzen
+    //Am Ende einer Zeile den Edit Button manuell ergänzen
     htmlHeader = htmlHeader + "<th>Edit</th>"
 
     //Jetzt Zeilenweise die Tabelle aufbauen
@@ -114,11 +116,11 @@ function createHTMLTable(items){
             // mit mit k-Iterator bewegen wir uns von links nach rechts
             htmlRow = htmlRow + `<td>${currItems[k]}</td>`
         }
-        //Am Ende einer Zeile den Edit Button manuell ergänzen
+        //Dann spalten mnanuell ergaenzen
         htmlRow = htmlRow + `<td><a href="/details/${linenumber}">Anzeigen</a></td>`
         htmlRow = htmlRow + `<td><a href="/edit/${linenumber}">bearbeiten</a></td>`
         htmlRow = htmlRow + `<td><a href="/delete/${linenumber}">löschen</a></td>`
-
+        
         // Die Zeile der Tabelle schließen. 
         htmlRow = htmlRow + "</tr>"
     }

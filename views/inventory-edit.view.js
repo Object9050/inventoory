@@ -93,15 +93,21 @@ return html;
 
 
 
-function editItems (item){
-    let editItem =  `<div>
-                        <form>
-                            <input type="text" value="${item.name}"></input>
-                            <input type="text" value="${item.typ}"></input>
-                            <input type="text" value="${item.Neupreis}"></input>
-                            <input type="text" value="${item.Ort}"></input>
-                            <input type="submit" method="post" value="Speichern"></input>
+function editItems(item){
+    // let editItemName = document.getElementById(`"${item.name}"`).value;
+    let editItemTxt =  `<div>
+                        <form method="post">
+                            <label for="name">Bezeichnung ändern</label>
+                            <input id="name" type="text" value="${item.name}"></input>
+                            <label for="typ">Typ ändern</label>
+                            <input id="typ" type="text" value="${item.typ}"></input>
+                            <label for="neupreis">Neupreis ändern</label>
+                            <input id="neupreis" type="text" value="${item.neupreis}"></input>
+                            <label for="ort">Ort ändern</label>
+                            <input id="ort" type="text" value="${item.ort}"></input>
+                            <input type="submit" value="Speichern"></input>
                         </form>
                     </div>`
-return editItem
+        // console.log (editItemName);
+return editItemTxt
 }
