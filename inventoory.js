@@ -69,16 +69,16 @@ function OnUserRequest(req, res){
             res.end(editItem(items[item_to_edit]))
         }
         else if (splittedURL.includes("addItem") /* && splittedURL.length == 3 */){
-            let newData = {
+            let newItem = {
                 "name":"",
                 "typ":"",
                 "neupreis":"",
                 "ort":""
                 };
-            items.push(newData);
+            items.push(newItem);
             // Convert into raw data before adding to JSON
-            var newDataRaw = JSON.stringify(items);
-            fs.writeFile('./data/items.json', newDataRaw, (err) => {
+            var newItemRaw = JSON.stringify(items);
+            fs.writeFile('./data/items.json', newItemRaw, (err) => {
                 // Error checking
                 if (err) throw err;
                 console.log("New data added");
@@ -86,16 +86,16 @@ function OnUserRequest(req, res){
             res.end(editItem(items[items.length-1]))
         }
         else if (splittedURL.includes("addKaktus") /* && splittedURL.length == 3 */){
-            let newData = {
+            let newItem = {
                 "name":"Kaktus",
                 "typ":"Pflanze",
                 "neupreis":"1,50 EUR",
                 "ort":"Fensterbank"
                 };
-            items.push(newData);
+            items.push(newItem);
             // Convert into raw data before adding to JSON
-            var newDataRaw = JSON.stringify(items);
-            fs.writeFile('./data/items.json', newDataRaw, (err) => {
+            var newItemRaw = JSON.stringify(items);
+            fs.writeFile('./data/items.json', newItemRaw, (err) => {
                 // Error checking
                 if (err) throw err;
                 console.log("New data added");
