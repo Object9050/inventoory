@@ -1,12 +1,13 @@
 import http from 'http'
 import fs from 'fs'
 import url from 'url'
+import {parse} from 'querystring'
 import {generateFullItemList as httmldoc} from './views/inventoor-full-list.view.js'
 import {generateSingleView as singleDoc} from './views/inventory-single.view.js'
 import {generateEditedItem as editItem} from './views/inventory-edit.view.js'
 
 const hostname = '127.0.0.1'
-const port = '3000'
+const port = '3005'
 
 //Ein Server erstellen ...
 let server = http.createServer(OnUserRequest);
@@ -26,8 +27,8 @@ fs.readFile('./data/items.json', (err, data) => {
 let counter=0;
 function OnUserRequest(req, res){
 
-    console.log(counter)
-    console.log(items)
+    // console.log(counter)
+    // console.log(items)
 
     let parsedURL = url.parse(req.url, true)
      
@@ -84,6 +85,31 @@ function OnUserRequest(req, res){
                 console.log("New data added");
             });
             res.end(editItem(items[items.length-1]))
+        }
+        else if (splittedURL.includes("save") && req.method == "POST"){
+            let formData = []
+            // Listening for event 'data'. Create anonymous function with param 'chunk'.
+            // Push 'chunk' into variable formData.
+            req.on('data', (chunk) => {
+                formData.push(chunk);
+                console.log("Kommt an");
+            })
+            req.on('end', () => {
+                // let data = req.read()
+                formData = Buffer.concat(formData).toString();
+                let dataToSave = parse(formData);
+                items[items.length-1] = (dataToSave)
+                // Convert into raw data before adding to JSON
+                var newItemRaw = JSON.stringify(items);
+                fs.writeFile('./data/items.json', newItemRaw, (err) => {
+                    // Error checking
+                    if (err) throw err;
+                    console.log("Data saved");
+                });
+                res.writeHead(302,{location: '/', 'content-type':'text/html'});
+                res.end (httmldoc(items));
+            });
+
         }
         else if (splittedURL.includes("addKaktus") /* && splittedURL.length == 3 */){
             let newItem = {

@@ -5,8 +5,9 @@
   "description": "Verwaltung von großen und kleinen Dingen",
   "main": "inventoory.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node inventoory.js"
   },
-  "author": "Manuel Fischer",
+  "authors": "Manuel Fischer, Object9050",
   "license": "MIT"
 }

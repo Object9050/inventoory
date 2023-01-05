@@ -96,18 +96,18 @@ return html;
 function editItems(item){
     // let editItemName = document.getElementById(`"${item.name}"`).value;
     let editItemTxt =  `<div>
-                        <form method="post">
-                            <label for="name">Bezeichnung ändern</label>
-                            <input id="name" type="text" value="${item.name}"></input>
-                            <label for="typ">Typ ändern</label>
-                            <input id="typ" type="text" value="${item.typ}"></input>
-                            <label for="neupreis">Neupreis ändern</label>
-                            <input id="neupreis" type="text" value="${item.neupreis}"></input>
-                            <label for="ort">Ort ändern</label>
-                            <input id="ort" type="text" value="${item.ort}"></input>
-                            <input type="submit" value="Speichern"></input>
-                        </form>
-                    </div>`
+                            <form action="/save" method="POST" id="saveForm">
+                                <label for="name">Bezeichnung ändern</label>
+                                <input name="name" id="name" type="text" value="${item.name}"></input>
+                                <label for="typ">Typ ändern</label>
+                                <input name="typ" id="typ" type="text" value="${item.typ}"></input>
+                                <label for="neupreis">Neupreis ändern</label>
+                                <input name="neupreis" id="neupreis" type="text" value="${item.neupreis}"></input>
+                                <label for="ort">Ort ändern</label>
+                                <input name="ort" id="ort" type="text" value="${item.ort}"></input>
+                                <button form="saveForm" type="submit" value="Submit">Speichern</button>
+                            </form>
+                        </div>`
         // console.log (editItemName);
 return editItemTxt
 }
