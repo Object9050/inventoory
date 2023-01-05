@@ -4,7 +4,7 @@ import url from 'url'
 import {parse} from 'querystring'
 import {generateFullItemList as httmldoc} from './views/inventoor-full-list.view.js'
 import {generateSingleView as singleDoc} from './views/inventory-single.view.js'
-import {generateEditedItem as editItem} from './views/inventory-edit.view.js'
+import {generateEditedItemView as editItem} from './views/inventory-edit.view.js'
 
 const hostname = '127.0.0.1'
 const port = '3005'
@@ -36,7 +36,8 @@ function OnUserRequest(req, res){
         //res.setHeader ('Content-Type', 'text/html');
         res.statusCode = 200;
         res.end (httmldoc(items))
-    } else if (req.url === "/ueber"){
+    } 
+    else if (req.url === "/ueber"){
         res.setHeader ('Content-Type', 'text/html');
         res.statusCode = 200;
         res.end (`<h1>Das ist meine &Uumlber Mich Seite</h1> `)
@@ -52,21 +53,13 @@ function OnUserRequest(req, res){
 
         }
         else if (splittedURL.includes("details") && splittedURL.length == 3){
-                const id_position = 2;
-                let item_to_show = splittedURL[id_position]
-                console.log("details, id: " + item_to_show)
-                //let item = Object.values(items[item_to_show])
-                // items = items[item_to_show].toString()
-                // res.end (`<h1> Hat geklappt</h1> ${item}`)
-                res.end(singleDoc(items[item_to_show]))
+            const id_position = 2;
+            let item_to_show = splittedURL[id_position]
+            res.end(singleDoc(items[item_to_show]))
         }
         else if (splittedURL.includes("edit") && splittedURL.length == 3){
             const id_position = 2;
             let item_to_edit = splittedURL[id_position]
-            console.log("details, id: " + item_to_edit)
-            //let item = Object.values(items[item_to_show])
-            // items = items[item_to_show].toString()
-            // res.end (`<h1> Hat geklappt</h1> ${item}`)
             res.end(editItem(items[item_to_edit]))
         }
         else if (splittedURL.includes("addItem") /* && splittedURL.length == 3 */){
@@ -92,13 +85,14 @@ function OnUserRequest(req, res){
             // Push 'chunk' into variable formData.
             req.on('data', (chunk) => {
                 formData.push(chunk);
-                console.log("Kommt an");
-            })
+                             })
             req.on('end', () => {
                 // let data = req.read()
                 formData = Buffer.concat(formData).toString();
                 let dataToSave = parse(formData);
-                items[items.length-1] = (dataToSave)
+                // Funktioniert nur beim Hinzufügen neuer Gegenstände
+                // ToDo: IDs hinzufügen
+                items[items.length-1] = dataToSave
                 // Convert into raw data before adding to JSON
                 var newItemRaw = JSON.stringify(items);
                 fs.writeFile('./data/items.json', newItemRaw, (err) => {

@@ -1,4 +1,4 @@
-export function generateEditedItem(item){
+export function generateEditedItemView(item){
     let html = `
     <!DOCTYPE html>
     <html lang="en">
@@ -50,7 +50,7 @@ export function generateEditedItem(item){
                 </div>
             </div>
             <div class="row ">       
-            ${editItems(item)}         
+            ${generateEditItemForm(item)}         
                 
             </div>
         </div>
@@ -93,21 +93,29 @@ return html;
 
 
 
-function editItems(item){
-    // let editItemName = document.getElementById(`"${item.name}"`).value;
-    let editItemTxt =  `<div>
-                            <form action="/save" method="POST" id="saveForm">
-                                <label for="name">Bezeichnung ändern</label>
-                                <input name="name" id="name" type="text" value="${item.name}"></input>
-                                <label for="typ">Typ ändern</label>
-                                <input name="typ" id="typ" type="text" value="${item.typ}"></input>
-                                <label for="neupreis">Neupreis ändern</label>
-                                <input name="neupreis" id="neupreis" type="text" value="${item.neupreis}"></input>
-                                <label for="ort">Ort ändern</label>
-                                <input name="ort" id="ort" type="text" value="${item.ort}"></input>
-                                <button form="saveForm" type="submit" value="Submit">Speichern</button>
-                            </form>
-                        </div>`
-        // console.log (editItemName);
-return editItemTxt
+function generateEditItemForm(item){
+    let keys = Object.keys(item)
+    let values = Object.values(item)
+
+    let editItemHTML = `<form action="/save" method="POST" id="saveForm">`
+    // keys.forEach(element => { //Warum geht es hiermit nicht?
+    for (let element = 0; element < keys.length; element++) {
+        editItemHTML += `<label for="${keys[element]}">${keys[element]} ändern</label>
+        <input name="${keys[element]}" id="${keys[element]}" type="text" value="${values[element]}"></input><br><br>`
+    };
+    editItemHTML += `<button form="saveForm" type="submit" value="Submit">Speichern</button>
+                    </form>`
+
+    // let editItemHTML =  `<form action="/save" method="POST" id="saveForm">
+    //                         <label for="name">Bezeichnung ändern</label>
+    //                         <input name="name" id="name" type="text" value="${item.name}"></input>
+    //                         <label for="typ">Typ ändern</label>
+    //                         <input name="typ" id="typ" type="text" value="${item.typ}"></input>
+    //                         <label for="neupreis">Neupreis ändern</label>
+    //                         <input name="neupreis" id="neupreis" type="text" value="${item.neupreis}"></input>
+    //                         <label for="ort">Ort ändern</label>
+    //                         <input name="ort" id="ort" type="text" value="${item.ort}"></input>
+    //                         <button form="saveForm" type="submit" value="Submit">Speichern</button>
+    //                     </form>`
+return editItemHTML
 }
