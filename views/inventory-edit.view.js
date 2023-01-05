@@ -6,7 +6,7 @@ export function generateEditedItemView(item){
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Inventoory</title>
+        <title>Inventory</title>
 
         <!--materializecss-->
         <!--Import Google Icon Font-->
@@ -42,7 +42,7 @@ export function generateEditedItemView(item){
         </ul>
     </div>
     
-    <main id="inventoory-app">
+    <main id="Inventory-app">
         <div class="container ">
             <div class="row">
                 <div class="col s12">
@@ -68,7 +68,7 @@ export function generateEditedItemView(item){
         <div class="footer-copyright blue-grey darken-4">
             <div class="container">
                 <div class="row">
-                    <div class="col s4"> © 2023 inventoory</div>
+                    <div class="col s4"> © 2023 Inventory</div>
                     <div class="col s4 offset-s4">
                         <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
                     </div>
@@ -98,7 +98,7 @@ function generateEditItemForm(item){
     let values = Object.values(item)
 
     let editItemHTML = `<form action="/save" method="POST" id="saveForm">`
-    // keys.forEach(element => { //Warum geht es hiermit nicht?
+    // QUESTION: keys.forEach(element => { //Warum geht es hiermit nicht?
     for (let element = 0; element < keys.length; element++) {
         editItemHTML += `<label for="${keys[element]}">${keys[element]} ändern</label>
         <input name="${keys[element]}" id="${keys[element]}" type="text" value="${values[element]}"></input><br><br>`

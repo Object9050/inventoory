@@ -3,30 +3,35 @@
         "name": "Küchentisch",
         "typ": "Tisch",
         "neupreis": "200 EUR",
-        "ort": "Küche"
+        "ort": "Küche",
+        "id": "PCSFM"
     },
     {
-        "name": "Wohnzimmertisch",
-        "typ": "Tisch",
+        "name": "Gartenstuhl",
+        "typ": "Stuhl",
         "neupreis": "150 EUR",
-        "ort": "Wohnzimmer"
+        "ort": "Garten",
+        "id": "CE3T0"
     },
     {
         "name": "Webcam",
         "typ": "Computerzubehör",
         "neupreis": "70 EUR",
-        "ort": "Schreibtisch"
+        "ort": "Schreibtisch",
+        "id": "MH9Y3"
     },
     {
         "name": "Drucker",
         "typ": "Computerzubehör",
         "neupreis": "70 EUR",
-        "ort": "Regal"
+        "ort": "Regal",
+        "id": "QSS0L"
     },
     {
         "name": "Laptop",
         "typ": "Computer",
         "neupreis": "1200 EUR",
-        "ort": "k.A => mobil"
+        "ort": "k.A => mobil",
+        "id": "SI9OY"
     }
 ]

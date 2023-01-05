@@ -4,14 +4,23 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "start inventoory",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}\\inventoory.js"
-        }
+    {
+        "name": "start utils",
+        "request": "launch",
+        "skipFiles": [
+            "<node_internals>/**"
+        ],
+        "type": "node",
+        "program": "${workspaceFolder}\\helper\\utils.js"
+    },
+    {
+        "type": "node",
+        "request": "launch",
+        "name": "start inventory",
+        "skipFiles": [
+            "<node_internals>/**"
+        ],
+        "program": "${workspaceFolder}\\inventory.js"
+    }
     ]
 }

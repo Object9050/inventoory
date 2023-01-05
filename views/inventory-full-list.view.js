@@ -6,7 +6,7 @@ export function generateFullItemList(items){
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Inventoory</title>
+        <title>Inventory</title>
 
         <!--materializecss-->
         <!--Import Google Icon Font-->
@@ -42,7 +42,7 @@ export function generateFullItemList(items){
         </ul>
     </div>
     
-    <main id="inventoory-app">
+    <main id="inventory-app">
         <div class="container ">
             <div class="row">
                 <div class="col s12">
@@ -70,7 +70,7 @@ export function generateFullItemList(items){
         <div class="footer-copyright blue-grey darken-4">
             <div class="container">
                 <div class="row">
-                    <div class="col s4"> © 2023 inventoory</div>
+                    <div class="col s4"> © 2023 inventory</div>
                     <div class="col s4 offset-s4">
                         <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
                     </div>
