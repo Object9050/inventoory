@@ -129,20 +129,21 @@ function OnUserRequest(req, res){
             });
 
         }
-        else if (splittedURL.includes("addKaktus") /* && splittedURL.length == 3 */){
-            let newItem = {
+        else if (splittedURL.includes("addKaktus")){
+            let kaktus = {
                 "name":"Kaktus",
                 "typ":"Pflanze",
                 "neupreis":"1,50 EUR",
                 "ort":"Fensterbank"
                 };
-            items.push(newItem);
+            kaktus.id = createRandomID()
+            items.push(kaktus);
             // Convert into raw data before adding to JSON
             var newItemRaw = JSON.stringify(items);
             fs.writeFile(pathToJSON, newItemRaw, (err) => {
                 // Error checking
                 if (err) throw err;
-                console.log("New data added");
+                console.log("Kaktus added");
             });
             res.end (fullView(items))
         }
