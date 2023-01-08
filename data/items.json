@@ -1,44 +1,32 @@
 [
     {
-        "name": "Küchentisch",
-        "typ": "Tisch",
-        "neupreis": "200 EUR",
-        "ort": "Küche",
-        "id": "PCSFM"
+        "name":"Küchentisch",
+        "typ":"Tisch",
+        "neupreis":"200 EUR",
+        "ort":"Küche"
     },
     {
-        "name": "Gartenstuhl",
-        "typ": "Stuhl",
-        "neupreis": "150 EUR",
-        "ort": "Garten",
-        "id": "CE3T0"
+        "name":"Wohnzimmertisch",
+        "typ":"Tisch",
+        "neupreis":"150 EUR",
+        "ort":"Wohnzimmer"
     },
     {
-        "name": "Webcam",
-        "typ": "Computerzubehör",
-        "neupreis": "70 EUR",
-        "ort": "Schreibtisch",
-        "id": "MH9Y3"
+        "name":"Webcam",
+        "typ":"Computerzubehör",
+        "neupreis":"70 EUR",
+        "ort":"Schreibtisch"
     },
     {
-        "name": "Drucker",
-        "typ": "Computerzubehör",
-        "neupreis": "70 EUR",
-        "ort": "Regal",
-        "id": "QSS0L"
+        "name":"Drucker",
+        "typ":"Computerzubehör",
+        "neupreis":"70 EUR",
+        "ort":"Regal"
     },
     {
-        "name": "Laptop",
-        "typ": "Computer",
-        "neupreis": "1200 EUR",
-        "ort": "k.A => mobil",
-        "id": "SI9OY"
-    },
-    {
-        "name": "Wasservogel",
-        "typ": "Tier",
-        "neupreis": "unbezahlbar",
-        "ort": "Luft",
-        "id": "MLE2L"
+        "name":"Laptop",
+        "typ":"Computer",
+        "neupreis":"1200 EUR",
+        "ort":"k.A => mobil"
     }
 ]

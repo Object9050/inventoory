@@ -19,10 +19,12 @@ server.listen(port,hostname, () => {console.log(`Server is Listening on ${hostna
 
 // Load data from json file
 let items;
+let itemsDefault;
 const pathToJSON = './data/items.json'
+const pathToDefaultJSON = './data/items-default.json'
 
 fs.readFile(pathToJSON, (err, data) => {
-    items = JSON.parse(data);
+    items = JSON.parse(data)
     for(let element = 0; element < items.length; element++) {
         let itemID = createRandomID()
         if (items[element].id == undefined){
@@ -35,8 +37,11 @@ fs.readFile(pathToJSON, (err, data) => {
     let newItemsRaw = JSON.stringify(items);
     fs.writeFile(pathToJSON, newItemsRaw, (err) => {console.log("Alles Super beim schreiben der Datei")})
 })
-
-
+// Loading data from default JSON file with keys without values. Needed to prevent null pointer exception
+// when items.json is empty (after the deletion of the last element). 
+fs.readFile(pathToDefaultJSON, (err, data) => {
+    itemsDefault = JSON.parse(data)
+})
 
 
 let counter=0;
@@ -47,7 +52,7 @@ function OnUserRequest(req, res){
     let parsedURL = url.parse(req.url, true)
      
     if(req.url === "/"){ //Das ist die Startseite
-        //res.setHeader ('Content-Type', 'text/html');
+        //res.setHeader ('Content-Type', 'text/html'); QUESTION: Wofür diese Zeile?
         res.statusCode = 200;
         res.end (fullView(items))
     } 
@@ -63,8 +68,14 @@ function OnUserRequest(req, res){
 
             let item_to_delete = splittedURL[2]
             items.splice(item_to_delete,1)
-            // ToDo: Save changes to file
-            res.end (fullView(items))
+            // As long as object 'items' has got contents use items, else use items-default.
+            // Needed to prevent null pointer exception
+            if (items[0] != null){
+                res.end (fullView(items))
+            }
+            else {
+                res.end (fullView(itemsDefault))
+            }
 
         }
         else if (splittedURL.includes("details") && splittedURL.length == 3){
@@ -86,7 +97,7 @@ function OnUserRequest(req, res){
             // Als Schablone nehmen wir das 0. Element
             // QUESTION: Was genau passiert hier?
             let item_to_add = {}
-            let keys = Object.keys(items[0])
+            let keys = Object.keys(itemsDefault[0])
             for (let i = 0; i < keys.length; i++){
                 item_to_add[keys[i]] = "";
             }
