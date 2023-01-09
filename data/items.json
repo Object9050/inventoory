@@ -1,32 +1,37 @@
 [
     {
-        "name":"Küchentisch",
-        "typ":"Tisch",
-        "neupreis":"200 EUR",
-        "ort":"Küche"
+        "name": "Küchentisch",
+        "typ": "Tisch",
+        "neupreis": "200 EUR",
+        "ort": "Küche",
+        "id": "MY32G"
     },
     {
-        "name":"Wohnzimmertisch",
-        "typ":"Tisch",
-        "neupreis":"150 EUR",
-        "ort":"Wohnzimmer"
+        "name": "Wohnzimmertisch",
+        "typ": "Tisch",
+        "neupreis": "150 EUR",
+        "ort": "Wohnzimmer",
+        "id": "SBTYK"
     },
     {
-        "name":"Webcam",
-        "typ":"Computerzubehör",
-        "neupreis":"70 EUR",
-        "ort":"Schreibtisch"
+        "name": "Webcam",
+        "typ": "Computerzubehör",
+        "neupreis": "70 EUR",
+        "ort": "Schreibtisch",
+        "id": "9UWWG"
     },
     {
-        "name":"Drucker",
-        "typ":"Computerzubehör",
-        "neupreis":"70 EUR",
-        "ort":"Regal"
+        "name": "Drucker",
+        "typ": "Computerzubehör",
+        "neupreis": "70 EUR",
+        "ort": "Regal",
+        "id": "LKVOQ"
     },
     {
-        "name":"Laptop",
-        "typ":"Computer",
-        "neupreis":"1200 EUR",
-        "ort":"k.A => mobil"
+        "name": "Laptop",
+        "typ": "Computer",
+        "neupreis": "1200 EUR",
+        "ort": "k.A => mobil",
+        "id": "XLC9C"
     }
 ]

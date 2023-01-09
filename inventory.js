@@ -1,3 +1,5 @@
+// SQL only for test purposes. It is not implemented in the actual application.
+import sqlite3 from 'sqlite3'
 import http from 'http'
 import fs from 'fs'
 import url from 'url'
@@ -9,6 +11,34 @@ import { createRandomID } from './helper/utils.js'
 
 const hostname = '127.0.0.1'
 const port = '3005'
+
+// create SQLITE DB
+// './db/sample.db'
+let db = new sqlite3.Database('./db/sample.db', (err) => {
+    if (err) {
+      return console.error(err.message);
+    }
+    console.log('Connected to the sample SQlite database.');
+  });
+
+// CREATE SQLITE TABLE
+db.run('CREATE TABLE IF NOT EXISTS \
+Logs(id INTEGER PRIMARY KEY, logMsg TEXT)');
+
+// Enter log message into database
+let id = createRandomID()
+let logData = `Dies ist eine Random ID: ${id}`
+let sqlQuery = `INSERT INTO Logs VALUES (NULL, :logMsg)`
+db.run(sqlQuery,[logData]);
+//// Simple variant
+// db.run('INSERT INTO Logs VALUES (NULL, "Das ist die Log-Message")');
+
+// print all data contained in SQLITE table
+db.all("SELECT * FROM Logs", function(err, rows) {
+    rows.forEach(function (row) {
+      console.log(row.id + ": " + row.logMsg);
+    });
+   });
 
 //Einen Server erstellen ...
 let server = http.createServer(OnUserRequest);
@@ -52,7 +82,7 @@ function OnUserRequest(req, res){
     let parsedURL = url.parse(req.url, true)
      
     if(req.url === "/"){ //Das ist die Startseite
-        //res.setHeader ('Content-Type', 'text/html'); QUESTION: Wofür diese Zeile?
+        //res.setHeader ('Content-Type', 'text/html'); QUESTION: Wofür diese Zeile? ANSWER: Mit UTF8 als Zeichencode würden Umlaute interpretiert.
         res.statusCode = 200;
         res.end (fullView(items))
     } 

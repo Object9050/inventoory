@@ -9,5 +9,9 @@
     "start": "node inventory.js"
   },
   "authors": "Manuel Fischer, Object9050",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.4"
+  }
 }
